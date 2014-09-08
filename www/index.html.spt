@@ -100,6 +100,9 @@ friends_hack = website.db.all("""
     </div>
 </div>
 {% else %}
+<style>
+    #hero { padding-bottom: 50px; }
+</style>
 <div class="container">
     <div id="page" class="group">
         {% block page %}
