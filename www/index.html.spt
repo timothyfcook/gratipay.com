@@ -103,7 +103,7 @@ friends_hack = website.db.all("""
 <div class="container">
     <div id="page" class="group">
         {% block page %}
-        <div class="col0">
+        <div class="col1">
 
             <h2>{{ _("You give {0} per week", format_currency(participant.giving, 'USD')) }}</h2>
 
@@ -126,9 +126,12 @@ friends_hack = website.db.all("""
                     {% endfor %}
                 </ul>
             </div>
-
-
             <div class="clear"></div>
+
+        </div>
+
+        <div class="col2">
+
             <h2>{{ _("You receive {0} per week", format_currency(participant.receiving, 'USD')) }}</h2>
 
             <p>To receive money, do something awesome and then tell people
