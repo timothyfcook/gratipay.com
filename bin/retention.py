@@ -32,32 +32,32 @@ for transfer in transfers:
 # Compute a retentions distribution for each cohort.
 # ==================================================
 
-cohort_actives = []
+distributions = []
 for date, users in sorted(cohorts.items()):
 
-    active = defaultdict(int)
+    distribution = defaultdict(int)
     for username in users:
         start, end = usermap[username]
         nweeks = (end - start).days // 7
         for n in range(nweeks, -1, -1):
-            active[n] += 1
+            distribution[n] += 1
 
-    max_weeks = max(active.keys())
+    max_weeks = max(distribution.keys())
     tusers = len(users)
 
-    cohort_actives.append([])
+    distributions.append([])
     for nweeks in range(0, max_weeks):
-        nusers = active.get(nweeks, 0)
+        nusers = distribution.get(nweeks, 0)
         pusers = nusers / tusers
-        cohort_actives[-1].append(pusers)
+        distributions[-1].append(pusers)
 
 
 # Fold the retentions distributions together.
 # ===========================================
 
 weeks = defaultdict(list)
-for active in cohort_actives:
-    for nweeks, pusers in enumerate(active):
+for distribution in distributions:
+    for nweeks, pusers in enumerate(distribution):
         weeks[nweeks].append(pusers)
 
 for foo in sorted(weeks.items()):
