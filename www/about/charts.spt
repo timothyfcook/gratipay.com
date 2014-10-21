@@ -51,10 +51,7 @@ $(document).ready(function() {
     <div class="chart-wrapper newline">
         <a name="charges"></a>
         <h2>Charges ($)</h2>
-        <p class="note">Money moved into Gratipay via credit card<br /> (minimum
-        charge <a
-            href="http://blog.gittip.com/post/28158537529/why-were-you-charged-10">upped</a>
-        to $10 in week 8)</p>
+        <p class="note">Money moved into Gratipay via credit card</p>
         <div class="chart" id="chart_charges"></div>
         <div class="x-axis">weeks</div>
     </div>
@@ -63,9 +60,7 @@ $(document).ready(function() {
         <a name="withdrawals"></a>
         <h2>Withdrawals ($)</h2>
 
-        <p class="note">Money withdrawn from Gratipay to a bank account<br />(feature <a
-            href="http://blog.gittip.com/post/30116848405/with-payouts-gittip-is-minimally-viable">added</a>
-        in week 12)</p>
+        <p class="note">Money withdrawn from Gratipay to a bank account</p>
 
         <div class="chart" id="chart_withdrawals"></div>
         <div class="x-axis">weeks</div>
