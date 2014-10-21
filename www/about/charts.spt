@@ -16,61 +16,63 @@ $(document).ready(function() {
 
 {% block page %}
 <div class="col1">
-    <div class="chart-wrapper bar">
+    <div class="chart-wrapper">
         <a name="users"></a>
         <h2>Total Users</h2>
         <p class="note">Anyone who's ever created an account on Gratipay</p>
-        <div class="chart" id="chart_total_users"></div>
+        <div class="chart bar" id="chart_total_users"></div>
         <div class="x-axis">weeks</div>
     </div>
 
-    <div class="chart-wrapper bar">
+    <div class="chart-wrapper">
         <a name="active"></a>
         <h2>Active Users</h2>
         <p class="note">Users that gave and/or received money within Gratipay (per week)</p>
-        <div class="chart" id="chart_active_users"></div>
+        <div class="chart bar" id="chart_active_users"></div>
         <div class="x-axis">weeks</div>
     </div>
 
-    <div class="chart-wrapper retention">
-        <a name="retention"></a>
-        <h2>Retention</h2>
-        <p class="note"></p>
-        <div class="chart" id="chart_retention"></div>
+    <div class="chart-wrapper">
+        <a name="cohort"></a>
+        <h2>Cohort Size and Retention</h2>
+        <p class="note">The number of new users per week, and their retention over time</p>
+        <div class="chart bar" id="chart_new_users"></div>
+        <div class="x-axis"></div>
+        <div class="chart retention" id="chart_retention"></div>
     </div>
 </div>
 <div class="col1">
-    <div class="chart-wrapper bar">
+    <div class="chart-wrapper">
         <a name="cumulative-gifts"></a>
         <h2>Total Gifts ($)</h2>
         <p class="note">Money transferred within Gratipay (cumulative)</p>
-        <div class="chart" id="chart_total_gifts"></div>
+        <div class="chart bar" id="chart_total_gifts"></div>
         <div class="x-axis">weeks</div>
     </div>
 
-    <div class="chart-wrapper bar">
+    <div class="chart-wrapper">
         <a name="gifts"></a>
         <h2>Weekly Gifts ($)</h2>
         <p class="note">Money transferred within Gratipay (per week)</p>
-        <div class="chart" id="chart_weekly_gifts"></div>
+        <div class="chart bar" id="chart_weekly_gifts"></div>
         <div class="x-axis">weeks</div>
     </div>
 
-    <div class="chart-wrapper bar newline">
+    <div class="chart-wrapper newline">
         <a name="charges"></a>
         <h2>Charges ($)</h2>
         <p class="note">Money moved into Gratipay via credit card</p>
-        <div class="chart" id="chart_charges"></div>
+        <div class="chart bar" id="chart_charges"></div>
         <div class="x-axis">weeks</div>
     </div>
 
-    <div class="chart-wrapper bar">
+    <div class="chart-wrapper">
         <a name="withdrawals"></a>
         <h2>Withdrawals ($)</h2>
 
         <p class="note">Money withdrawn from Gratipay to a bank account</p>
 
-        <div class="chart" id="chart_withdrawals"></div>
+        <div class="chart bar" id="chart_withdrawals"></div>
         <div class="x-axis">weeks</div>
     </div>
 </div>

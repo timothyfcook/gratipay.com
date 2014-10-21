@@ -23,67 +23,63 @@
         cursor: pointer;
     }
 
-    &.bar {
 
-        .chart {
+    .chart {
+
+        &.bar {
             height: 100px;
-        }
-        .shaded {
-            position: absolute;
-            background: #396;
-            bottom: 0;
-            width: 100%;
-        }
-        .week span {
-            font: $small-mono;
-        }
-        .week span.x-tick {
-            position: absolute;
-            bottom: -12pt;
-            right: 0;
-            padding: 5pt 0.5pt 0 0;
-            border: 1pt solid #630;
-            border-style: none solid none none;
-            display: none;
-            color: #630;
-            background: white;
-        }
-        .week span.y-label {    // This is the flag.
-            display: none;
-            position: absolute;
-            top: -17pt;
-            right: 0;
-            z-index: 1;         // Wants to be over the bars.
-            text-align: center;
-            background: white;
-            color: #630;
-            border: 2pt solid #630;
-            border-radius: 3pt 0 0 3pt;
-            padding: 2pt 3pt;
-        }
-        .week.max span.y-label {
-            display: block;
-        }
-        .week.flagged span.y-label,
-        .week.flagged span.x-tick,
-        .week.hover span.y-label,
-        .week.hover span.x-tick {
-            display: block;
-        }
-        .week.hover span.y-label,
-        .week.hover span.x-tick {
-            z-index: 2
-        }
-    }
 
-    &.retention {
-        .chart {
+            .shaded {
+                position: absolute;
+                background: #396;
+                bottom: 0;
+                width: 100%;
+            }
+            .week span {
+                font: $small-mono;
+            }
+            .week span.x-tick {
+                position: absolute;
+                bottom: -12pt;
+                right: 0;
+                padding: 5pt 0.5pt 0 0;
+                border: 1pt solid #630;
+                border-style: none solid none none;
+                display: none;
+                color: #630;
+                background: white;
+            }
+            .week span.y-label {    // This is the flag.
+                display: none;
+                position: absolute;
+                top: -17pt;
+                right: 0;
+                z-index: 1;         // Wants to be over the bars.
+                text-align: center;
+                background: white;
+                color: #630;
+                border: 2pt solid #630;
+                border-radius: 3pt 0 0 3pt;
+                padding: 2pt 3pt;
+            }
+            .week.max span.y-label {
+                display: block;
+            }
+            .week.flagged span.y-label,
+            .week.flagged span.x-tick,
+            .week.hover span.y-label,
+            .week.hover span.x-tick {
+                display: block;
+            }
+            .week.hover span.y-label,
+            .week.hover span.x-tick {
+                z-index: 2
+            }
+        }
+
+        &.retention {
             height: 300px;
             width: 100%;
-        }
-        .tenure {
-            margin: 0;
-            padding: 0;
         }
     }
 }

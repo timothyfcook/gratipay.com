@@ -30,6 +30,7 @@ if bool(qs.get('recompute', 0)):
 # Compute a retentions distribution for each cohort.
 # ==================================================
 
+new_users = []
 distributions = []
 for date, users in sorted(cohorts.items()):
 
@@ -42,6 +43,7 @@ for date, users in sorted(cohorts.items()):
 
     max_weeks = max(distribution.keys())
     tusers = len(users)
+    new_users.append({'new_users': tusers})  # formatted to work with charts.js
 
     distributions.append([])
     for nweeks in range(0, max_weeks+1):
@@ -51,4 +53,4 @@ for date, users in sorted(cohorts.items()):
 
 response.headers["Access-Control-Allow-Origin"] = "*"
 [---] application/json via json_dump
-distributions
+[new_users, distributions]

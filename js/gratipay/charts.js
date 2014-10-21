@@ -81,31 +81,29 @@ Gratipay.charts.make = function(series) {
         return week;
     }
 
-    for (var i=0, point; point = series[i]; i++) {
-        for (var j=0, chart; chart = charts[j]; j++) {
-            chart.append(
-                Week(i, j, scales[j], point[chart.varname], point.date)
-            );
-        }
+    function wireup(week) {
+        week.click(function() {
+            $(this).toggleClass('flagged');
+            if ($(this).hasClass('flagged'))
+                $(this).removeClass('hover');
+        });
+
+        week.mouseover(function() {
+            $(this).addClass('hover');
+        });
+
+        week.mouseout(function() {
+            $(this).removeClass('hover');
+        });
     }
 
-
-    // Wire up behaviors.
-    // ==================
-
-    $('.week').click(function() {
-        $(this).toggleClass('flagged');
-        if ($(this).hasClass('flagged'))
-            $(this).removeClass('hover');
-    });
-
-    $('.week').mouseover(function() {
-        $(this).addClass('hover');
-    });
-
-    $('.week').mouseout(function() {
-        $(this).removeClass('hover');
-    });
+    for (var i=0, point; point = series[i]; i++) {
+        for (var j=0, chart; chart = charts[j]; j++) {
+            var week = Week(i, j, scales[j], point[chart.varname], point.date);
+            wireup(week);
+            chart.append(week);
+        }
+    }
 
 };
 
@@ -113,24 +111,27 @@ Gratipay.charts.make = function(series) {
 Gratipay.charts.retention = {};
 
 
-Gratipay.charts.retention.make = function(series) {
+Gratipay.charts.retention.make = function(data) {
+
+    Gratipay.charts.make(data[0]);  // new_users
+
+    var retention = data[1];
+    var nweeks = retention.length;
+    var w = (1 / nweeks * 100).toFixed(10) + '%';
+    var chart = $('#chart_retention');
 
     function get_color(p) {
         return 'hsl(149,50%,' + (100 - (p*60)).toFixed() + '%)';
     }
 
-    var nweeks = series.length;
-    var w = (1 / nweeks * 100).toFixed(10) + '%';
-    var chart = $('#chart_retention');
-
     for (var i=0; i < nweeks; i++) {
-        var ntenure = series[i].length;
+        var nretention = retention[i].length;
         var week = $(document.createElement('div')).addClass('week').css('width', w);
-        for (var j=0; j < ntenure; j++) {
-            var tenure = $(document.createElement('div')).addClass('tenure');
-            var p = parseFloat(series[i][j][0], 10);
-            tenure.css({background: get_color(p), height: w});
-            week.append(tenure);
+        for (var j=0; j < nretention; j++) {
+            var retained = $(document.createElement('div')).addClass('retained');
+            var p = parseFloat(retention[i][j][0], 10);
+            retained.css({background: get_color(p), height: w});
+            week.append(retained);
         }
         chart.append(week);
     }
