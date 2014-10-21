@@ -17,4 +17,4 @@ charts = website.db.all("""\
 """)
 response.headers["Access-Control-Allow-Origin"] = "*"
 [---] application/json via json_dump
-charts  # Don't show Gratipay #0.
+charts
