@@ -14,7 +14,7 @@ $(document).ready(function() {
 {% endblock %}
 
 {% block page %}
-<div class="two-column">
+<div class="col1">
     <div class="chart-wrapper">
         <a name="users"></a>
         <h2>Total Users</h2>
@@ -30,7 +30,8 @@ $(document).ready(function() {
         <div class="chart" id="chart_active_users"></div>
         <div class="x-axis">weeks</div>
     </div>
-
+</div>
+<div class="col1">
     <div class="chart-wrapper">
         <a name="cumulative-gifts"></a>
         <h2>Total Gifts ($)</h2>
