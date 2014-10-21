@@ -119,26 +119,19 @@ Gratipay.charts.retention.make = function(series) {
         return 'hsl(149,50%,' + (100 - (p*60)).toFixed() + '%)';
     }
 
-    var ncohorts = series.length;
+    var nweeks = series.length;
+    var w = (1 / nweeks * 100).toFixed(10) + '%';
+    var chart = $('#chart_retention');
 
-    var table = $(document.createElement('table'));
-    for (var i=0; i < ncohorts; i++) {
-        var cohort = series[i]
-          , nweeks = cohort.length
-          , row = $(document.createElement('tr')).addClass('cohort')
-           ;
-        for (var j=0; j < nweeks; j++) {
-            var week = cohort[j]
-              , cell = $(document.createElement('td')).addClass('week')
-              , p = parseFloat(week[0], 10)
-               ;
-            cell.css('background', get_color(p));
-            row.append(cell);
+    for (var i=0; i < nweeks; i++) {
+        var ntenure = series[i].length;
+        var week = $(document.createElement('div')).addClass('week').css('width', w);
+        for (var j=0; j < ntenure; j++) {
+            var tenure = $(document.createElement('div')).addClass('tenure');
+            var p = parseFloat(series[i][j][0], 10);
+            tenure.css({background: get_color(p), height: w});
+            week.append(tenure);
         }
-        while (j++ < nweeks)
-            row.append($(document.createElement('td')).addClass('empty'));
-
-        table.append(row);
+        chart.append(week);
     }
-    $('#chart_retention').append(table);
 };

@@ -16,17 +16,17 @@
         line-height: 10pt;
         padding-bottom: 12pt;
     }
+    .week {
+        height: 100%;
+        float: left;
+        position: relative;
+        cursor: pointer;
+    }
 
     &.bar {
 
         .chart {
             height: 100px;
-        }
-        .week {
-            height: 100%;
-            float: left;
-            position: relative;
-            cursor: pointer;
         }
         .shaded {
             position: absolute;
@@ -77,15 +77,11 @@
     }
 
     &.retention {
-        table {
+        .chart {
+            height: 300px;
             width: 100%;
-            margin: 0;
-            padding: 0;
-            border-spacing: 0;
-            border-collapse: collapse;
         }
-        td {
-            height: 4px;
+        .tenure {
             margin: 0;
             padding: 0;
         }
