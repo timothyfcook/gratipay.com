@@ -45,22 +45,48 @@ for date, users in sorted(cohorts.items()):
     max_weeks = max(distribution.keys())
     tusers = len(users)
 
-    distributions.append([])
-    for nweeks in range(0, max_weeks):
+    distributions.append([tusers, []])
+    for nweeks in range(0, max_weeks+1):
         nusers = distribution.get(nweeks, 0)
         pusers = nusers / tusers
-        distributions[-1].append(pusers)
+        distributions[-1][1].append((pusers, nusers))
 
 
 # Fold the retentions distributions together.
 # ===========================================
 
-weeks = defaultdict(list)
-for distribution in distributions:
-    for nweeks, pusers in enumerate(distribution):
-        weeks[nweeks].append(pusers)
+def fold(distributions):
+    weeks = defaultdict(list)
+    for distribution in distributions:
+        for nweeks, (pusers, nusers, tusers) in enumerate(distribution):
+            weeks[nweeks].append(pusers)
 
-for foo in sorted(weeks.items()):
-    week, pusers = foo  # bug when unpacking in the for loop!?
-    mean = sum(pusers) / len(pusers)
-    print('{},{}'.format(week, mean))
+    values = []
+    for foo in sorted(weeks.items()):
+        week, pusers = foo  # bug when unpacking in the for loop!?
+        mean = sum(pusers) / len(pusers)
+        values.append(mean)
+
+    return values
+
+
+for tusers, distribution in distributions:
+    print('{},'.format(tusers), end='')
+    print(','.join(['{}'.format(p) for p,n in distribution]))
+
+
+raise SystemExit
+
+
+ndist = len(distributions)
+one_third = ndist // 3
+two_thirds = one_third * 2
+
+early = distributions[:one_third]
+middle = distributions[one_third:two_thirds]
+late = distributions[two_thirds:]
+
+distgroups = [early, middle, late]
+
+for distributions in distgroups:
+    print(','.join(['{}'.format(p) for p in fold(distributions)]))
