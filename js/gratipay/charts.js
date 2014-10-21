@@ -106,4 +106,39 @@ Gratipay.charts.make = function(series) {
     $('.week').mouseout(function() {
         $(this).removeClass('hover');
     });
+
+};
+
+
+Gratipay.charts.retention = {};
+
+
+Gratipay.charts.retention.make = function(series) {
+
+    function get_color(p) {
+        return 'hsl(149,50%,' + (100 - (p*60)).toFixed() + '%)';
+    }
+
+    var ncohorts = series.length;
+
+    var table = $(document.createElement('table'));
+    for (var i=0; i < ncohorts; i++) {
+        var cohort = series[i]
+          , nweeks = cohort.length
+          , row = $(document.createElement('tr')).addClass('cohort')
+           ;
+        for (var j=0; j < nweeks; j++) {
+            var week = cohort[j]
+              , cell = $(document.createElement('td')).addClass('week')
+              , p = parseFloat(week[0], 10)
+               ;
+            cell.css('background', get_color(p));
+            row.append(cell);
+        }
+        while (j++ < nweeks)
+            row.append($(document.createElement('td')).addClass('empty'));
+
+        table.append(row);
+    }
+    $('#chart_retention').append(table);
 };
