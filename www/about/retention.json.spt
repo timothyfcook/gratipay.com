@@ -49,6 +49,7 @@ for date, users in sorted(cohorts.items()):
     for nweeks in range(0, max_weeks+1):
         nusers = distribution.get(nweeks, 0)
         pusers = nusers / tusers
+        pusers = float('{:.3}'.format(pusers))
         distributions[-1].append((pusers, nusers))
 
 response.headers["Access-Control-Allow-Origin"] = "*"
