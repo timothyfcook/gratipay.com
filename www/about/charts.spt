@@ -35,7 +35,7 @@ $(document).ready(function() {
     <div class="chart-wrapper">
         <a name="cohort"></a>
         <h2>Cohort Size and Retention</h2>
-        <p class="note">The number of new users per week, and their retention over time</p>
+        <p class="note">The number of new active users per week, and their activity over time</p>
         <div class="chart bar" id="chart_new_users"></div>
         <div class="x-axis"></div>
         <div class="chart retention" id="chart_retention"></div>
