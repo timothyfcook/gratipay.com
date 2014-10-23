@@ -33,6 +33,14 @@ $(document).ready(function() {
     </div>
 
     <div class="chart-wrapper">
+        <a name="pactive"></a>
+        <h2>Active Ratio</h2>
+        <p class="note">Active users per 10,000 total users</p>
+        <div class="chart bar" id="chart_active_ratio" data-y-max="1500"></div>
+        <div class="x-axis">weeks</div>
+    </div>
+
+    <div class="chart-wrapper">
         <a name="cohort"></a>
         <h2>Cohort Size and Retention</h2>
         <p class="note">The number of new active users per week, and their activity over time</p>

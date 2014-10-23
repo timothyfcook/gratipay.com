@@ -53,7 +53,8 @@ Gratipay.charts.make = function(series) {
     }
 
     for (var i=0, len=maxes.length; i < len; i++) {
-        scales.push(Math.ceil(maxes[i] / 100) * 100);
+        var max = parseInt(charts[i].attr('data-y-max') || maxes[i], 10);
+        scales.push(Math.ceil(max / 100) * 100);
     }
 
 
@@ -69,6 +70,11 @@ Gratipay.charts.make = function(series) {
         var xTick = $(document.createElement('span')).addClass('x-tick');
         xTick.text(i).attr('title', title);
         week.append(xTick);
+
+        if (y > scales[j]) {
+            // clip with no flag
+            y = scales[j];
+        }
 
         // Display a max flag (only once)
         if (y === maxes[j]) {
