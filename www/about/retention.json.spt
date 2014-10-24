@@ -1,21 +1,18 @@
 from collections import defaultdict
 
 def get_cohorts():
-    transfers = website.db.all("select timestamp::date as date, tippee, tipper "
-                               "from transfers where context='tip' or context='take' "
-                               "order by timestamp", back_as=dict)
+    transfers = website.db.all("select timestamp::date as date, tipper as username "
+                               "from transfers where context='tip' order by timestamp")
 
     usermap = {}
     cohorts = defaultdict(list)
 
-    for transfer in transfers:
-        date = transfer['date']
-        for username in (transfer['tipper'], transfer['tippee']):
-            if username not in usermap:
-                usermap[username] = [date, date]
-                cohorts[date].append(username)
-            else:
-                usermap[username][1] = date
+    for date, username in transfers:
+        if username not in usermap:
+            usermap[username] = [date, date]
+            cohorts[date].append(username)
+        else:
+            usermap[username][1] = date
 
     return usermap, cohorts
 
@@ -27,31 +24,31 @@ if bool(qs.get('recompute', 0)):
     usermap, cohorts = get_cohorts()
 
 
-# Compute a retentions distribution for each cohort.
-# ==================================================
+# Compute the retention for each cohort.
+# ======================================
 
-new_users = []
-distributions = []
-for date, users in sorted(cohorts.items()):
+new_givers = []
+retentions = []
+for date, givers in sorted(cohorts.items()):
 
-    distribution = defaultdict(int)
-    for username in users:
+    retention = defaultdict(int)
+    for username in givers:
         start, end = usermap[username]
         nweeks = (end - start).days // 7
         for n in range(nweeks, -1, -1):
-            distribution[n] += 1
+            retention[n] += 1
 
-    max_weeks = max(distribution.keys())
-    tusers = len(users)
-    new_users.append({'new_users': tusers})  # formatted to work with charts.js
+    max_weeks = max(retention.keys())
+    tgivers = len(givers)
+    new_givers.append({'new_givers': tgivers})  # formatted to work with charts.js
 
-    distributions.append([])
+    retentions.append([])
     for nweeks in range(0, max_weeks+1):
-        nusers = distribution.get(nweeks, 0)
-        pusers = nusers / tusers
-        pusers = float('{:.3}'.format(pusers))
-        distributions[-1].append((pusers, nusers))
+        ngivers = retention.get(nweeks, 0)
+        pgivers = ngivers / tgivers
+        pgivers = float('{:.3}'.format(pgivers))
+        retentions[-1].append((pgivers, ngivers))
 
 response.headers["Access-Control-Allow-Origin"] = "*"
 [---] application/json via json_dump
-[new_users, distributions]
+[new_givers, retentions]
