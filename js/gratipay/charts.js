@@ -136,7 +136,7 @@ Gratipay.charts.retention.make = function(data) {
         for (var j=0; j < nretention; j++) {
             var retained = $(document.createElement('div')).addClass('retained');
             var p = parseFloat(retention[i][j][0], 10);
-            retained.css({background: get_color(p), height: w});
+            retained.css({background: get_color(p), height: '1'});
             week.append(retained);
         }
         chart.append(week);
