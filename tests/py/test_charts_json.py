@@ -154,6 +154,7 @@ class TestChartsJson(Harness):
                    , "charges": 0.0
                    , "withdrawals": 0.0
                    , "active_users": 3
+                   , "active_ratio": 7500
                    , "total_users": 4
                    , "total_gifts": 6.0
                     }
