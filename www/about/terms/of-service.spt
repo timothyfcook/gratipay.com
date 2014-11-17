@@ -5,7 +5,6 @@ title = "Terms of Service"
 
 {% block content %}
 <div class="col0">
-<h2>Terms of Service</h2>
 
 <p><i>Last Updated: April 9, 2013</i></p>
 
