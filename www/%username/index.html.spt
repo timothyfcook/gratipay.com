@@ -82,7 +82,6 @@ def with_others(obj):
     <div class="group">
         {% if participant.statement %}
         <div class="{% if long_statement %}col1{% else %}col0{% endif %}">
-            <h2>{{ STATEMENT }}</h2>
             <div class="statement markdown-output">
                 {{ markdown.render(MAKING.format(participant.statement)) }}
             </div>
