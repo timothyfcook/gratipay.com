@@ -3,13 +3,13 @@
     <!-- Statement -->
     <form class="statement">
         <h2>{{ _("Statement") }}
-            <button tabindex="200" class="edit">{{ _("Edit") }}</button>
-            <button tabindex="203" class="save" type="submit">{{ _("Save") }}</button>
-            <button tabindex="204" class="cancel" type="cancel">{{ _("Cancel") }}</button>
+            <button tabindex="100" class="edit">{{ _("Edit") }}</button>
+            <button tabindex="103" class="save" type="submit">{{ _("Save") }}</button>
+            <button tabindex="104" class="cancel" type="cancel">{{ _("Cancel") }}</button>
         </h2>
 
         <div class="edit">
-            <select tabindex="201" name="number" id="statement-select">
+            <select tabindex="101" name="number" id="statement-select">
                 <option value="singular"
                     {{ "selected" if participant.number == 'singular' else ''}}>
                     {{ I_AM_MAKING.format("...") }}
@@ -19,7 +19,7 @@
                     {{ WE_ARE_MAKING.format("...") }}
                 </option>
             </select>
-            <textarea tabindex="202">{{ participant.statement }}</textarea>
+            <textarea tabindex="102">{{ participant.statement }}</textarea>
             <span class="help">{{ _("Markdown supported.") }}
                 <a href="https://daringfireball.net/projects/markdown/basics" target="_blank">{{ _("What is markdown?") }}</a>
                 (<a href="https://github.com/gratipay/gratipay.com/tree/master/gratipay/utils/markdown.py" target="_blank">{{ _("View source.") }}</a>)
@@ -34,9 +34,9 @@
     <!-- Funding Goal -->
     <form class="goal">
         <h2>{{ _("Funding Goal") }}
-            <button tabindex="400" class="edit">{{ _("Edit") }}</button>
-            <button tabindex="401" class="save" type="submit">{{ _("Save") }}</button>
-            <button tabindex="402" class="cancel" type="cancel">{{ _("Cancel") }}</button>
+            <button tabindex="200" class="edit">{{ _("Edit") }}</button>
+            <button tabindex="203" class="save" type="submit">{{ _("Save") }}</button>
+            <button tabindex="204" class="cancel" type="cancel">{{ _("Cancel") }}</button>
         </h2>
         <div class="view">
             {% if user.participant.goal > 0 %}
@@ -51,32 +51,31 @@
         </div>
         <table class="edit"><tr><td>
 
-            <input tabindex="403" type="radio" name="goal" id="goal-yes" value="custom"
+            <input tabindex="201" type="radio" name="goal" id="goal-yes" value="custom"
             {% if user.participant.goal > 0 %} checked="true"{% endif %}/>
             <label for="goal-yes">{{ GOAL_PARTS[0] }}$</label><input
-                name="goal_custom" id="goal-custom"
+                name="goal_custom" id="goal-custom" tabindex="202"
             {% if (user.participant.goal == None) or (user.participant.goal <= 0) %}
             {% else %}
             value="{{ format_decimal(user.participant.goal) }}"
             {% endif %} />
             <label for="goal-yes">{{ GOAL_PARTS[1] }}</label>
 
-            <br />
+            <br>
 
-            <input tabindex="404" type="radio" name="goal" id="goal-null" value="null"
+            <input type="radio" name="goal" id="goal-null" value="null"
             {% if user.participant.goal == None %} checked="true"{% endif %}/>
             <label for="goal-null">{{ GRATEFUL }}</label>
 
-            <br />
+            <br>
 
-            <input tabindex="405" type="radio" name="goal" id="goal-0" value="0.00"
+            <input type="radio" name="goal" id="goal-0" value="0.00"
             {% if user.participant.goal == 0 %} checked="true"{% endif %}/>
             <label for="goal-0">{{ PATRON }}</label>
 
-            <br />
+            <br>
 
-            <input tabindex="406" type="radio" name="goal" id="goal-negative"
-                   value="-1"
+            <input type="radio" name="goal" id="goal-negative" value="-1"
             {% if (user.participant.goal != None) and user.participant.goal < 0 %} checked="true"{% endif %}/>
             <label for="goal-negative">{{ PATRON_NO_GIFTS }}</label>
 
