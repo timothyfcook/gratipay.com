@@ -2,9 +2,13 @@ Gratipay.profile = {};
 
 Gratipay.profile.toNumber = function(number) {
     if (number == 'plural')
+    {
         Gratipay.profile.toPlural();
-    else if (number == 'singular')
+        $('li.members').removeClass('hidden');
+    } else if (number == 'singular') {
         Gratipay.profile.toSingular();
+        $('li.members').addClass('hidden');
+    }
 };
 
 Gratipay.profile.toPlural = function() {
